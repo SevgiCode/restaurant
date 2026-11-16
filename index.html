@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Aqua | Heartwarming Nature Dining</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg-cream: #faf7f2; /* Warm, cozy background */
+        --bg-card: #ffffff;
+        --forest-green: #2d4a43; /* Deep nature green */
+        --earthy-gold: #c99a61; /* Warm accent */
+        --terracotta: #b85c43; /* Heartwarming clay contrast */
+        --text-dark: #2b2927; /* Soft dark brown instead of harsh black */
+        --text-muted: #6e6a66;
+        --font-sans: "Plus Jakarta Sans", sans-serif;
+        --font-serif: "Playfair Display", serif;
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background-color: var(--bg-cream);
+        color: var(--text-dark);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* --- Global Components --- */
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.9rem 2.2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        border-radius: 50px; /* Softer, rounded look */
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-primary {
+        background-color: var(--forest-green);
+        color: var(--bg-cream);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--terracotta);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--forest-green);
+        color: var(--forest-green);
+        background-color: transparent;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--forest-green);
+        color: var(--bg-cream);
+        transform: translateY(-2px);
+      }
+
+      .section-tagline {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--terracotta);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2.2rem, 4vw, 3.8rem);
+        font-weight: 400;
+        color: var(--forest-green);
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+
+      /* --- Navigation --- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 1.8rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      header.scrolled {
+        background-color: rgba(250, 247, 242, 0.95);
+        backdrop-filter: blur(12px);
+        padding: 1rem 5%;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+      }
+
+      .logo {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        color: var(--forest-green);
+        font-weight: 500;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .nav-links a {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--forest-green);
+      }
+
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--forest-green);
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 5%;
+        background:
+          linear-gradient(
+            to right,
+            rgba(250, 247, 242, 0.85) 40%,
+            rgba(250, 247, 242, 0.2)
+          ),
+          url("./images/res.jpg") center/cover no-repeat;
+      }
+
+      .hero-content {
+        max-width: 650px;
+        margin-top: 3rem;
+      }
+
+      .hero h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(3rem, 6vw, 4.8rem);
+        color: var(--forest-green);
+        line-height: 1.15;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--terracotta);
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 2.5rem;
+        max-width: 500px;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 1.2rem;
+      }
+
+      /* --- The Sanctuary (Nature Features) --- */
+      .sanctuary {
+        padding: 8rem 5%;
+        background-color: var(--bg-card);
+      }
+
+      .sanctuary-intro {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 5rem;
+      }
+
+      .grid-nature {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .nature-card {
+        background-color: var(--bg-cream);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .nature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(45, 74, 67, 0.06);
+      }
+
+      .nature-img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+
+      .nature-info {
+        padding: 2rem;
+      }
+
+      .nature-info i {
+        font-size: 1.5rem;
+        color: var(--earthy-gold);
+        margin-bottom: 1rem;
+      }
+
+      .nature-info h3 {
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        color: var(--forest-green);
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .nature-info p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      /* --- Story Section --- */
+      .story {
+        padding: 8rem 5%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      .story-images {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .story-img {
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+
+      .img-tall {
+        aspect-ratio: 3/4;
+      }
+
+      .img-offset {
+        transform: translateY(2rem);
+      }
+
+      /* --- Farm Menu Section --- */
+      .menu-section {
+        padding: 8rem 5%;
+        background-color: var(--bg-card);
+      }
+
+      .menu-container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+        margin-top: 4rem;
+      }
+
+      .menu-item {
+        margin-bottom: 1rem;
+      }
+
+      .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.3rem;
+      }
+
+      .menu-item-title {
+        font-family: var(--font-serif);
+        font-size: 1.3rem;
+        color: var(--forest-green);
+        font-weight: 500;
+      }
+
+      .menu-item-dot {
+        flex-grow: 1;
+        border-bottom: 1px dotted rgba(45, 74, 67, 0.2);
+        margin: 0 1rem;
+      }
+
+      .menu-item-price {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        color: var(--terracotta);
+        font-weight: 500;
+      }
+
+      .menu-item-desc {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--forest-green);
+        color: var(--bg-cream);
+        padding: 6rem 5% 3rem;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 4rem;
+        max-width: 1200px;
+        margin: 0 auto 4rem;
+      }
+
+      .footer-brand h2 {
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-brand p {
+        color: rgba(250, 247, 242, 0.7);
+        max-width: 320px;
+        margin-bottom: 2rem;
+      }
+
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(250, 247, 242, 0.05);
+        margin-right: 0.8rem;
+        color: var(--bg-cream);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--terracotta);
+      }
+
+      .footer-col h4 {
+        font-family: var(--font-serif);
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--earthy-gold);
+      }
+
+      .footer-col p {
+        color: rgba(250, 247, 242, 0.7);
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2.5rem;
+        border-top: 1px solid rgba(250, 247, 242, 0.1);
+        font-size: 0.9rem;
+        color: rgba(250, 247, 242, 0.5);
+      }
+
+      /* --- Responsive Styles --- */
+      @media (max-width: 968px) {
+        .grid-nature {
+          grid-template-columns: 1fr;
+        }
+        .story-grid {
+          grid-template-columns: 1fr;
+          gap: 4rem;
+        }
+        .story-images {
+          order: 2;
+        }
+        .img-offset {
+          transform: none;
+        }
+        .menu-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        header .btn {
+          display: none;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header id="header">
+      <a href="#" class="logo">Aqua</a>
+      <nav class="nav-links">
+        <a href="#" class="active">Home</a>
+        <a href="#sanctuary">The Grounds</a>
+        <a href="#story">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Visit Us</a>
+      </nav>
+      <a
+        href="#reserve"
+        class="btn btn-primary"
+        style="padding: 0.6rem 1.8rem; font-size: 0.85rem"
+        >Reserve a Table</a
+      >
+      <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="section-tagline">A Hidden Sanctuary</p>
+        <h1>Slow dining, woven into <em>nature's lap</em>.</h1>
+        <p>
+          Escape the noise. Share a heartwarming meal surrounded by rolling
+          green meadows, wandering friendly farm animals, and the quiet calm of
+          the water.
+        </p>
+        <div class="hero-btns">
+          <a href="#menu" class="btn btn-primary">View Today's Menu</a>
+          <a href="#sanctuary" class="btn btn-secondary">Explore The Grounds</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Sanctuary Section -->
+    <section id="sanctuary" class="sanctuary">
+      <div class="sanctuary-intro">
+        <p class="section-tagline">Wander Around</p>
+        <h2 class="section-title">Meet our beautiful neighbors</h2>
+        <p>
+          Our restaurant lives in harmony with the environment. Before or after
+          your meal, you are warmly invited to walk the grounds and share a
+          quiet moment with the family.
+        </p>
+      </div>
+
+      <div class="grid-nature">
+        <!-- Card 1 -->
+        <div class="nature-card">
+          <img src="./images/7.jpg" alt="Swans in a pool" class="nature-img" />
+          <div class="nature-info">
+            <i class="fa-solid fa-dove"></i>
+            <h3>The Swan Pool</h3>
+            <p>
+              A expansive, crystal-clear natural pool reserved entirely for our
+              elegant resident white swans. A peaceful sight right next to our
+              outdoor terrace.
+            </p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="nature-card">
+          <img src="images/6.jpg" alt="Pony in field" class="nature-img" />
+          <div class="nature-info">
+            <i class="fa-solid fa-horse"></i>
+            <h3>Our Friendly Pony</h3>
+            <p>
+              Always curious and incredibly gentle, our resident pony loves
+              greeting guests (especially the little ones) near the orchard
+              meadow.
+            </p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="nature-card">
+          <img
+            src="./images/5.jpg"
+            alt="Chickens in grass"
+            class="nature-img"
+          />
+          <div class="nature-info">
+            <i class="fa-solid fa-egg"></i>
+            <h3>Free-Roaming Chickens</h3>
+            <p>
+              Wandering happily through the clover fields, our heritage hens
+              contribute directly to our daily breakfast recipes and fresh
+              bakes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="story">
+      <div class="story-grid">
+        <div class="story-images">
+          <img
+            src="./images/9.jpg"
+            alt="Outdoor dining setup"
+            class="story-img img-tall"
+          />
+          <img
+            src="./images/11.jpg"
+            alt="Fresh garden harvest"
+            class="story-img img-tall img-offset"
+          />
+        </div>
+        <div class="story-text">
+          <p class="section-tagline">Rooted in Earth</p>
+          <h2 class="section-title">
+            An experience that feels like coming home.
+          </h2>
+          <p>
+            We built this space to slow down time. Our kitchen is driven by the
+            seasons—gathering what we grow right here and cooking it over open
+            fires or serving it raw and vibrant.
+          </p>
+          <p
+            style="
+              margin-top: 1rem;
+              margin-bottom: 2rem;
+              color: var(--text-muted);
+            "
+          >
+            Whether you sit under the shade of our old oak trees watching the
+            swans drift by, or warm up by the indoor hearth, you're treated like
+            old friends coming over for Sunday supper.
+          </p>
+          <a href="#reserve" class="btn btn-secondary">Book Your Cozy Corner</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farm Menu Section -->
+    <section id="menu" class="menu-section">
+      <div class="menu-container">
+        <div style="text-align: center">
+          <p class="section-tagline">Wholesome & Fresh</p>
+          <h2 class="section-title">Gathered Comfort Food</h2>
+        </div>
+
+        <div class="menu-grid">
+          <div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <span class="menu-item-title">Orchard Harvest Salad</span>
+                <span class="menu-item-dot"></span>
+                <span class="menu-item-price">$16</span>
+              </div>
+              <p class="menu-item-desc">
+                Fresh greens, crisp local apples, candied walnuts, house-churned
+                goat cheese dressing.
+              </p>
+            </div>
+            <div class="menu-item" style="margin-top: 2rem">
+              <div class="menu-item-header">
+                <span class="menu-item-title">Earthy Wild Mushroom Tart</span>
+                <span class="menu-item-dot"></span>
+                <span class="menu-item-price">$22</span>
+              </div>
+              <p class="menu-item-desc">
+                Flaky hand-pressed pastry, foraged herbs, caramelized sweet
+                onions.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="menu-item">
+              <div class="menu-item-header">
+                <span class="menu-item-title">Hearth-Roasted Chicken</span>
+                <span class="menu-item-dot"></span>
+                <span class="menu-item-price">$34</span>
+              </div>
+              <p class="menu-item-desc">
+                Slow-cooked over applewood blocks, served with rosemary butter
+                root vegetables.
+              </p>
+            </div>
+            <div class="menu-item" style="margin-top: 2rem">
+              <div class="menu-item-header">
+                <span class="menu-item-title"
+                  >Warm Berry & Rhubarb Cobbler</span
+                >
+                <span class="menu-item-dot"></span>
+                <span class="menu-item-price">$12</span>
+              </div>
+              <p class="menu-item-desc">
+                Baked in cast iron, topped with a scoop of fresh buttermilk
+                vanilla bean ice cream.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Aqua</h2>
+          <p>
+            A heartwarming culinary journey surrounded by gentle life and open
+            skies.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Wander In</h4>
+          <p>Thursday — Sunday</p>
+          <p>Garden Walks: From 12:00 PM</p>
+          <p>Kitchen Open: 1:00 PM — 10:00 PM</p>
+        </div>
+        <div class="footer-col">
+          <h4>Our Location</h4>
+          <p>The Green Valley Path, Outskirts</p>
+          <p>North Macedonia</p>
+          <p
+            style="
+              margin-top: 1rem;
+              font-size: 0.9rem;
+              color: var(--earthy-gold);
+            "
+          >
+            <i class="fa-solid fa-location-dot"></i> Get Directions
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Restaurant Aqua. Handcrafted with love.</p>
+      </div>
+    </footer>
+
+    <!-- Simple Script for Scroll Header Effect -->
+    <script>
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>
